@@ -15,7 +15,10 @@ df["classification"] = np.where(
 # Prepare the data for visualization
 df_filtered = df.groupby(["package_manager", "classification"]).agg(
     distinct_package_name=("package_name", "nunique"),
-    distinct_package_name_version=("package_name", lambda x: len(x.drop_duplicates())),
+    distinct_package_name_version=(
+        "package_name",
+        lambda x: len(x.drop_duplicates()),
+    ),
     distinct_seal_id=("seal_id", "nunique"),
 ).reset_index()
 
@@ -25,9 +28,9 @@ df_filtered = df_filtered.melt(
     value_name="Count",
 )
 
-# Add dropdown filters
+# Add dropdown filter for classification
 classification_dropdown = alt.binding_select(
-    options=["All", "Red", "Green", "Yellow"],
+    options=["All", "Red", "Green", "Yellow", "None"],
     name="Classification: ",
 )
 classification_selection = alt.selection_single(
@@ -38,8 +41,8 @@ classification_selection = alt.selection_single(
 
 # Filter data based on selection
 filtered_data = df_filtered.transform_filter(
-    (classification_selection.classification == "All")
-    | (classification_selection.classification == alt.datum.classification)
+    (alt.datum.classification == "All")
+    | (alt.datum.classification == classification_selection.classification)
 )
 
 # Base chart
