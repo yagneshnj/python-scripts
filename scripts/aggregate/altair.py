@@ -1,42 +1,61 @@
 import altair as alt
+import numpy as np
+
+# Add a classification column to the data for filtering
+df["classification"] = np.where(
+    df["red_license_classification"].notnull(),
+    "Red",
+    np.where(
+        df["green_license_classification"].notnull(),
+        "Green",
+        np.where(df["yellow_license_classification"].notnull(), "Yellow", "None"),
+    ),
+)
 
 # Prepare the data for visualization
-df_visual = results_df.melt(
-    id_vars=["package_manager"],
-    value_vars=[
-        "distinct_package_name_prod",
-        "distinct_package_name_all",
-        "distinct_package_name_version_prod",
-        "distinct_package_name_version_all",
-        "distinct_package_name_red_prod",
-        "distinct_package_name_version_red_prod",
-        "distinct_seal_id_red_prod",
-    ],
+df_filtered = df.groupby(["package_manager", "classification"]).agg(
+    distinct_package_name=("package_name", "nunique"),
+    distinct_package_name_version=("package_name", lambda x: len(x.drop_duplicates())),
+    distinct_seal_id=("seal_id", "nunique"),
+).reset_index()
+
+df_filtered = df_filtered.melt(
+    id_vars=["package_manager", "classification"],
     var_name="Metric",
     value_name="Count",
 )
 
-# Add a dropdown for classifications
+# Add dropdown filters
 classification_dropdown = alt.binding_select(
     options=["All", "Red", "Green", "Yellow"],
     name="Classification: ",
 )
 classification_selection = alt.selection_single(
-    fields=["Metric"], bind=classification_dropdown, init={"Metric": "All"}
+    fields=["classification"],
+    bind=classification_dropdown,
+    init={"classification": "All"},
+)
+
+# Filter data based on selection
+filtered_data = df_filtered.transform_filter(
+    (classification_selection.classification == "All")
+    | (classification_selection.classification == alt.datum.classification)
 )
 
 # Base chart
-base = alt.Chart(df_visual).mark_bar().encode(
+base_chart = alt.Chart(filtered_data).mark_bar().encode(
     x=alt.X("Metric:N", title="Metric"),
     y=alt.Y("Count:Q", title="Count"),
     color="package_manager:N",
-    tooltip=["package_manager", "Metric", "Count"]
-).transform_filter(
-    classification_selection
+    tooltip=["package_manager", "classification", "Metric", "Count"],
+).properties(
+    width=700,
+    height=400,
+    title="Interactive Dashboard for Package Metrics",
 )
 
 # Add interactivity
-interactive_chart = base.add_selection(classification_selection)
+interactive_dashboard = base_chart.add_selection(classification_selection)
 
 # Display the chart
-interactive_chart.show()
+interactive_dashboard.show()
