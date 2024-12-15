@@ -91,11 +91,12 @@ styled_df = (report_df.style
                                               ('background-color', '#4f81bd'), 
                                               ('color', 'white'),
                                               ('text-align', 'center')]},
-                 {'selector': 'th.col0', 'props': [('color', 'transparent')]}  # Make License Family font disappear
+                 {'selector': 'th.col0', 'props': [('color', 'transparent')]},  # Hide "License Family"
+                 {'selector': 'thead th.index_name', 'props': [('color', 'transparent')]},  # Hide index header
+                 {'selector': 'tbody th', 'props': [('color', 'transparent')]}  # Hide index values
              ])
              .set_properties(**{'border': '1px solid lightgray', 'padding': '4px'})  # Add cell borders and padding
             )
-
 
 # Display the styled DataFrame
 styled_df
