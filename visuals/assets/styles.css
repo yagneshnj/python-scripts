@@ -1,0 +1,93 @@
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 700; /* Bold */
+    color: #495057; /* Dark gray for contrast */
+    text-align: center; /* Center the text */
+    text-transform: capitalize; /* Optional: capitalize the title */
+    margin-bottom: 20px; /* Add spacing below the title */
+    letter-spacing: 0.05em; /* Subtle spacing for a modern look */
+}
+
+.radio-buttons {
+    display: flex;
+    justify-content: center; /* Center the radio buttons */
+    align-items: center; /* Align vertically */
+    margin-top: 10px; /* Add spacing above */
+    gap: 20px; /* Add space between buttons */
+}
+
+.radio-buttons .form-check-label {
+    font-weight: 500; /* Semi-bold for labels */
+    color: #495057; /* Dark gray for labels */
+}
+
+.radio-buttons .form-check-input {
+    accent-color: #007bff; /* Primary blue for selected radio buttons */
+    transform: scale(1.2); /* Enlarge the radio button */
+}
+
+
+.osa-header {
+    font-size: 2.5rem; /* Increased size for prominence */
+    font-weight: 700; /* Bold font for modern look */
+    color: #343a40; /* Dark gray for clean appearance */
+    text-transform: uppercase; /* Make text uppercase */
+    letter-spacing: 0.15em; /* Slightly increased spacing */
+    text-align: center; /* Center the text */
+    padding: 20px 0; /* Increased padding for more spacing */
+    background-color: #e9ecef; /* Match sidebar background */
+    margin-bottom: 15px; /* Add spacing below the header */
+    border-bottom: 2px solid #dee2e6; /* Subtle bottom border for separation */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+
+/* Sidebar container */
+.dash-container {
+    background-color: #e9ecef; /* Match page background */
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 220px;
+    padding: 10px;
+    border-right: 1px solid #dee2e6; /* Add subtle border for separation */
+    overflow-y: auto; /* Allow scrolling if content exceeds the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content at the top */
+}
+
+/* Sidebar navigation category labels */
+.nav-category {
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #343a40; /* Dark gray to match page design */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-bottom: 1px solid #dee2e6; /* Subtle separation */
+}
+
+/* Navigation links */
+.modern-navlink {
+    color: #343a40 !important; /* Dark gray for text */
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modern-navlink:hover {
+    background-color: #adb5bd !important; /* Lighter gray for hover */
+    color: #FFFFFF !important;
+}
+
+.modern-navlink.active {
+    background-color: #495057 !important; /* Highlight active with dark gray */
+    color: #FFFFFF !important;
+    font-weight: 600;
+}
