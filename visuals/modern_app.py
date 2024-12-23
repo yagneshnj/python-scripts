@@ -83,7 +83,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Strong Copyleft Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="strong_copyleft_heatmap")),
+                                dbc.CardBody(dcc.Graph(id="strong_copyleft_heatmap", className="dynamic-height-graph")),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
@@ -94,7 +94,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Weak Copyleft Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="weak_copyleft_heatmap")),
+                                dbc.CardBody(dcc.Graph(id="weak_copyleft_heatmap", className="dynamic-height-graph")),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
@@ -109,7 +109,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Other Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="other_licenses_heatmap")),
+                                dbc.CardBody(dcc.Graph(id="other_licenses_heatmap", className="dynamic-height-graph")),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
