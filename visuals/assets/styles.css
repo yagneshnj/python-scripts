@@ -8,6 +8,10 @@
     letter-spacing: 0.05em; /* Subtle spacing for a modern look */
 }
 
+.dynamic-height-graph {
+    height: calc((100vh)/3.57); /* Adjust based on available space */
+}
+
 .radio-buttons {
     display: flex;
     justify-content: center; /* Center the radio buttons */
