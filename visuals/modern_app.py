@@ -83,7 +83,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Strong Copyleft Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="strong_copyleft_heatmap", className="dynamic-height-graph")),
+                                dbc.CardBody(dcc.Graph(id="strong_copyleft_heatmap", className="dynamic-height-graph", config={"displayModeBar": False}, )),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
@@ -94,7 +94,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Weak Copyleft Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="weak_copyleft_heatmap", className="dynamic-height-graph")),
+                                dbc.CardBody(dcc.Graph(id="weak_copyleft_heatmap", className="dynamic-height-graph", config={"displayModeBar": False}, )),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
@@ -109,7 +109,7 @@ def create_dashboard1():
                         dbc.Card(
                             [
                                 dbc.CardHeader("Other Licenses", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
-                                dbc.CardBody(dcc.Graph(id="other_licenses_heatmap", className="dynamic-height-graph")),
+                                dbc.CardBody(dcc.Graph(id="other_licenses_heatmap", className="dynamic-height-graph", config={"displayModeBar": False}, )),
                             ],
                             className="mb-4",
                             style={"box-shadow": "0 4px 8px rgba(0,0,0,0.1)", "border-radius": "8px"},
@@ -232,7 +232,7 @@ def create_heatmap(data_subset, colorscale, title, display_mode, unique_seals_pe
     fig.update_layout(
         title=None,  # Remove title
         margin=dict(t=20, b=20, l=20, r=20),  # Reduce top, bottom, left, right margins
-        height=270,  # Set the height of the chart (in pixels)
+        # height=267,  # Set the height of the chart (in pixels)
         xaxis=dict(
             title="",  # Remove x-axis title
             side="top",  # Position x-axis labels on top
