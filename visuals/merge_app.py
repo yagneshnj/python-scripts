@@ -83,7 +83,7 @@ def create_sidebar():
 def create_lob_performance_heatmap():
     return dbc.Card(
         [
-            dbc.CardHeader("Licenses Summary", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
+            # dbc.CardHeader("Licenses Summary", style={"font-size": "1.2rem", "font-weight": "600", "color": "#495057"}),
             dbc.CardBody(
                         dash_table.DataTable(
                                 id='heatmap-table',
@@ -134,24 +134,43 @@ def create_lob_performance_heatmap():
                                         'backgroundColor': get_color(row['Green %'], green_colors, aggr_data['Green %'].min(), aggr_data['Green %'].max()),
                                         'color': 'black'
                                     } for i, row in aggr_data.iterrows()
-                                ],
+                                ] + [
+                                        # Add borders for "LOB" column
+                                        {
+                                            'if': {'column_id': 'lob'},
+                                            'border-left': '1px solid #dee2e6',
+                                            'border-right': '1px solid #dee2e6',
+                                            # 'border-top': '1px solid #dee2e6',
+                                            'border-bottom': '1px solid #dee2e6',
+                                        },
+                                        # Add borders for "Total Seals" column
+                                        {
+                                            'if': {'column_id': 'total_seals'},
+                                            'border-left': '1px solid #dee2e6',
+                                            # 'border-top': '1px solid #dee2e6',
+                                            'border-bottom': '1px solid #dee2e6',                                            
+                                        }
+                                    ],
                                 style_header={
                                     'backgroundColor': '#2c3e50',
                                     'color': 'white',
                                     'fontWeight': 'bold',
                                     'textAlign': 'center'
                                 },
+                                style_table={
+                                    'overflowX': 'auto',
+                                    # 'border': '2px solid #dee2e6',  # Updated border style for table
+                                    'borderRadius': '3px',
+                                    # 'boxShadow': '2px 2px 5px rgba(0,0,0,0.1)'  # Optional shadow for a better effect
+                                },
                                 style_cell={
                                     'font-family': 'Arial, sans-serif',
                                     'textAlign': 'center',
                                     'fontSize': '14px',
-                                    'padding': '10px'
-                                },
-                                style_table={
-                                    'overflowX': 'auto',
-                                    'border': '1px solid #ddd',
-                                    'borderRadius': '10px'
-                                },
+                                    'padding': '10px',
+                                    'border': '0px solid #dee2e6',  # Add borders between cells
+                                    'borderCollapse': 'collapse',  # Ensure borders are seamless
+                                }
                             )
             ),
         ],
