@@ -1,0 +1,6 @@
+Name     : Demo POC Only
+Type     : Forex Hedged USD
+Server   : MetaQuotes-Demo
+Login    : 10005237286
+Password : EbAgLf_1
+Investor : _0OlLyTm
